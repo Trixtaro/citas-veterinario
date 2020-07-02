@@ -8,7 +8,7 @@ const Cita = ({cita, elminarCita}) => {
             <p>Mascota: <span>{ mascota }</span></p>
             <p>Dueño: <span>{ propetario }</span></p>
             {
-                (n_telefono) || (
+                (n_telefono) && (
                     <p>Nº de teléfono: <span>{ n_telefono }</span></p>
                 )
             }
