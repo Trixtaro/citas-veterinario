@@ -6,22 +6,26 @@ const Formulario = ({ crearCita }) => {
     const [cita, actualizarCita] = useState({
         mascota: '',
         propetario: '',
+        n_telefono: '',
         fecha: '',
         hora: '',
         sintomas: ''
     });
     const [ error, notificarError ] = useState(false);
+
     const actualizarState = (event) => { // Función que actualizar el state
         actualizarCita({
             ...cita,
             [event.target.name]: event.target.value,
         });
     }
-    const { mascota, propetario, fecha, hora, sintomas } = cita;
+
+    const { mascota, propetario, n_telefono, fecha, hora, sintomas } = cita;
+
     const validarCita = (event) => { // Función que valida la cita
         event.preventDefault();
         // Validar
-        if(mascota.trim() === '' || propetario.trim() === '' || fecha.trim() === '' || hora.trim() === '' || sintomas.trim() === '') {
+        if(mascota.trim() === '' || propetario.trim() === '' /* ||  n_telefono.trim() === '' */ || fecha.trim() === '' || hora.trim() === '' || sintomas.trim() === '') {
             notificarError(true); // Notificar Error
             return;
         }
@@ -31,11 +35,13 @@ const Formulario = ({ crearCita }) => {
         actualizarCita({
             mascota: '',
             propetario: '',
+            n_telefono: '',
             fecha: '',
             hora: '',
             sintomas: ''
         });
     }
+
     return (
         <Fragment>
             <h2>Crear Cita</h2>
@@ -58,6 +64,14 @@ const Formulario = ({ crearCita }) => {
                     placeholder="Nombre del Dueño de la mascota"
                     onChange={actualizarState}
                     value={propetario}
+                />
+                <label>Nº de telefono:</label>
+                <input type="number"
+                    name="n_telefono"
+                    className="u-full-width"
+                    placeholder="Nombre del Dueño de la mascota"
+                    onChange={actualizarState}
+                    value={n_telefono}
                 />
                 <label>Fecha</label>
                 <input type="date"
